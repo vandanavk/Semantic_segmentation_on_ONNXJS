@@ -1,0 +1,23 @@
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+  <script src="./common/ndarray-browser-min.js"></script>
+  <script src="./common/imagenet.js"></script>
+  <script src="./common/image-loader.js"></script>
+  <script src="./index.js"></script>
+  <script src="https://docs.opencv.org/master/opencv.js"></script>
+  <script>
+    const imageSize = 224;
+  </script>
+</head>
+<body>
+  <h1>Resnet50 Example</h1>
+  <img id="imageSource" src="./resnet-cat.jpg"/>
+  <div>
+    <input type="button" value="Run" onclick="runExample(document.getElementById('imageSource').src)">
+  </div>
+  <div id="predictions">
+
+  </div>
+</body>
+</html>
