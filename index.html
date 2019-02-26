@@ -2,7 +2,7 @@
 <head>
   <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
   <script src="./common/ndarray-browser-min.js"></script>
-  <script src="./common/imagenet.js"></script>
+  <script src="./common/cityscape_labels.js"></script>
   <script src="./common/image-loader.js"></script>
   <script src="./index.js"></script>
   <script src="https://docs.opencv.org/master/opencv.js"></script>
@@ -11,13 +11,28 @@
   </script>
 </head>
 <body>
-  <h1>Resnet50 Example</h1>
-  <img id="imageSource" src="./resnet-cat.jpg"/>
+  <h1>Semantic Segmentation Example</h1>
+  <div id="imgdiv">
+  Upload file: <input id="url" type="file" onchange="loadFile(event)" accept="image/gif, image/jpeg, image/png"/>
+  <script type="text/javascript">
+    var div = document.getElementById('imgdiv');
+
+    var loadFile = function(event) {
+        im = document.getElementById('imageSource');
+        if (im) {
+            div.removeChild(im);
+        }
+        img = document.createElement('img');
+        img.id = 'imageSource';
+        img.src = URL.createObjectURL(event.target.files[0]);
+        div.appendChild(img);
+    }
+  </script>
+  </div>
+  <!--<img id="imageSource" src=document.getElementById('url').value/>-->
   <div>
     <input type="button" value="Run" onclick="runExample(document.getElementById('imageSource').src)">
   </div>
-  <div id="predictions">
-
-  </div>
+  <div><canvas id="canvasOutput" ></canvas></div>
 </body>
 </html>
